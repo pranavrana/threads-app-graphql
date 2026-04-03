@@ -9,8 +9,15 @@ async function init(){
     app.use(express.json());
     //Create graphql server
     const gqlServer = new ApolloServer({
-        typeDefs: ``,
-        resolvers: {}
+        typeDefs: `
+        type Query {
+            hello: String
+        }`,
+        resolvers: {
+            Query: {
+                hello: () => 'Hello, world!'
+            }
+        }
     })
 
     //Start gql server
