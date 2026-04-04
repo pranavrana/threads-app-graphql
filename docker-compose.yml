@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:18
     container_name: threads-db
     environment:
       POSTGRES_USER: postgres
@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql
 
 volumes:
   postgres_data:
