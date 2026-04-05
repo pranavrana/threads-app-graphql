@@ -9,7 +9,6 @@ const queries = {
     return token;
   },
   getCurrentUser: async (_: any, payload: any, context: any) => {
-    console.log(context);
     if (context && context.user) {
       return context.user;
     }
