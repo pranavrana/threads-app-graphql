@@ -1,9 +1,20 @@
-const queries = {};
+import UserService, {
+  createUserPayload,
+  GetUserTokenPayload,
+} from "../../service/user";
+
+const queries = {
+  getUserToken: async (_: any, payload: GetUserTokenPayload) => {
+    const token = await UserService.getUserToken(payload);
+    return token;
+  },
+};
 
 const mutations = {
-    createUser: async (_: any, { firstName, lastName, email, password }: { firstName: string, lastName: string, email: string, password: string }) => {
-        return `User ${firstName} ${lastName} created successfully!`;
-    } 
+  createUser: async (_: any, payload: createUserPayload) => {
+    const user = await UserService.createUser(payload);
+    return user.id;
+  },
 };
 
 export const resolvers = { queries, mutations };

@@ -1,30 +1,29 @@
-import 'dotenv/config'
-import { ApolloServer } from '@apollo/server';
-import { User } from './user';
+import "dotenv/config";
+import { ApolloServer } from "@apollo/server";
+import { User } from "./user";
 
-async function createApolloGraphqlServer () {
-    const gqlServer =  new ApolloServer({
+async function createApolloGraphqlServer() {
+  const gqlServer = new ApolloServer({
     typeDefs: `
         type Query {
-        hello: String
-        ${User.queries}
+            ${User.queries}
         }
         type Mutation {
-        ${User.mutations}
+            ${User.mutations}
         }`,
     resolvers: {
-        Query: {
-            ...User.resolvers.queries
-        },
-        Mutation: {
-            ...User.resolvers.mutations
-        }
-        }
-    })
-    //Start gql server
-    await gqlServer.start();
+      Query: {
+        ...User.resolvers.queries,
+      },
+      Mutation: {
+        ...User.resolvers.mutations,
+      },
+    },
+  });
+  //Start gql server
+  await gqlServer.start();
 
-    return gqlServer;
+  return gqlServer;
 }
 
 export default createApolloGraphqlServer;
